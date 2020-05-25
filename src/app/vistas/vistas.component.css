@@ -1,0 +1,31 @@
+.vistas {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    font-size: 30px;
+}
+
+#Lista {
+    display: flex;
+    justify-content: center;
+    background-color: silver;
+    width: 50%;
+    border-color: slategray;
+    border-width: 5px;
+    border-style: ridge;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#Tabla {
+    display: flex;
+    justify-content: center;
+    background-color: silver;
+    width: 50%;
+    border-color: slategray;
+    border-width: 5px;
+    border-style: ridge;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
