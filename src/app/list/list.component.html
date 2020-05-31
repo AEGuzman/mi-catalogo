@@ -1,15 +1,10 @@
 <ng-container *ngFor="let auto of autos">
     <div class="list">
-        <div>
-            <i class=" fas fa-eye fa-3x" (click)="onSelect(auto, autoModal)" id="ojo"></i>
-        </div>
 
+        <i class=" fas fa-eye fa-3x" (click)="onSelect(auto, autoModal)" id="ojo"></i>
         <div class="item item-description" id="descripcion">{{auto.descripcion}}</div>
 
     </div>
-
-
-
 </ng-container>
 
 <ng-template #autoModal let-modal>
