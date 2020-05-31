@@ -1,0 +1,27 @@
+<ng-container *ngFor="let auto of autos">
+    <div class="list">
+        <div>
+            <i class=" fas fa-eye fa-3x" (click)="onSelect(auto, autoModal)" id="ojo"></i>
+        </div>
+
+        <div class="item item-description" id="descripcion">{{auto.descripcion}}</div>
+
+    </div>
+
+
+
+</ng-container>
+
+<ng-template #autoModal let-modal>
+    <div class="modal header">
+        <h4 class="modal-title" id="modal-title">Descripcion</h4>
+    </div>
+    <div class="modal-body">
+        <div> {{autoSeleccionado.descripcion}}</div>
+        <div>Modelo: {{autoSeleccionado.modelo}}</div>
+        <div>Fecha de Registro: {{autoSeleccionado.fecha_registro}}</div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss()">Salir</button>
+    </div>
+</ng-template>

@@ -1,0 +1,20 @@
+.list {
+    display: flex;
+    background-color: silver;
+    width: 100%;
+    border-color: slategray;
+    font-size: 20px;
+    font-family: 'PT Serif', serif;
+    justify-content: space-between;
+}
+
+#ojo {
+    float: left;
+    margin-left: 4em;
+}
+
+#descripcion {
+    float: right;
+    margin-right: 2em;
+    font-size: 30px;
+}
