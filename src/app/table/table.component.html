@@ -1,2 +1,24 @@
-<h1>Componente Tabla ngBootstrap Placeholder</h1>
-<p>table works!</p>
+<table class="table autos">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Submarca</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Modelo</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let auto of autos; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <th>{{auto.marca}}</th>
+            <th>{{auto.submarca}}</th>
+            <th>{{auto.descripcion}}</th>
+            <th>{{auto.modelo}}</th>
+
+        </tr>
+    </tbody>
+</table>
