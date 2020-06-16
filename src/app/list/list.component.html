@@ -1,7 +1,8 @@
-<ng-container *ngFor="let auto of autos">
+<ng-container *ngFor="let auto of autos  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <div class="list">
 
-        <i class=" fas fa-eye fa-3x" (click)="onSelect(auto, autoModal)" id="ojo"></i>
+
+        <div class=" fas fa-eye fa-3x" (click)="onSelect(auto, autoModal)" id="ojo"></div>
         <div class="item item-description" id="descripcion">{{auto.descripcion}}</div>
 
     </div>
@@ -13,10 +14,16 @@
     </div>
     <div class="modal-body">
         <div> {{autoSeleccionado.descripcion}}</div>
-        <div>Modelo: {{autoSeleccionado.modelo}}</div>
-        <div>Fecha de Registro: {{autoSeleccionado.fecha_registro}}</div>
+        <div>{{autoSeleccionado.marca}}</div>
+        <div>{{autoSeleccionado.submarca}}</div>
+        <div>Modelos: {{autoSeleccionado.modelos}}</div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss()">Salir</button>
     </div>
 </ng-template>
+
+<div>
+    <ngb-pagination aria-label="Default pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="autos.length">
+    </ngb-pagination>
+</div>

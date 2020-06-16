@@ -1,7 +1,7 @@
 <table class="table autos">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">id</th>
             <th scope="col">Marca</th>
             <th scope="col">Submarca</th>
             <th scope="col">Descripcion</th>
@@ -12,13 +12,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let auto of autos; index as i">
+        <tr *ngFor="let auto of autos  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
+
             <th scope="row">{{ i + 1 }}</th>
-            <th>{{auto.marca}}</th>
-            <th>{{auto.submarca}}</th>
-            <th>{{auto.descripcion}}</th>
-            <th>{{auto.modelo}}</th>
+            <td>{{ auto?.marca }}</td>
+            <td>{{ auto?.submarca}}</td>
+            <td>{{ auto?.descripcion}}</td>
+            <td>{{ auto?.modelos }}</td>
+            <i class="fas fa-trash-alt"></i>
+            <th></th>
+            <i class="fas fa-edit"></i>
 
         </tr>
     </tbody>
 </table>
+
+<div>
+    <ngb-pagination aria-label="Default pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="autos.length">
+    </ngb-pagination>
+</div>
