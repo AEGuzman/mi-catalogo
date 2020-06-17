@@ -1,12 +1,14 @@
-<table class="table autos">
+<button type="button" class="btn btn-dark" (click)="openModalAgregar(auto)">Agregar <i class="fa fa-plus"></i></button>
+<table class="table table-striped">
+
+
     <thead>
         <tr>
-            <th scope="col">id</th>
+            <th scope="col">Id</th>
             <th scope="col">Marca</th>
             <th scope="col">Submarca</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Modelo</th>
-
 
 
         </tr>
@@ -14,15 +16,14 @@
     <tbody>
         <tr *ngFor="let auto of autos  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
 
-            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row">{{auto._id}}</th>
             <td>{{ auto?.marca }}</td>
             <td>{{ auto?.submarca}}</td>
             <td>{{ auto?.descripcion}}</td>
             <td>{{ auto?.modelos }}</td>
-            <i class="fas fa-trash-alt"></i>
-            <th></th>
-            <i class="fas fa-edit"></i>
+            <td (click)="openModalConfirmarEliminar(auto)"> <i class="fas fa-trash-alt"></i></td>
 
+            <td (click)="openModalEditar(auto)"><i class="fa fa-edit"></i></td>
         </tr>
     </tbody>
 </table>
