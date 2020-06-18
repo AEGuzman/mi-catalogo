@@ -19,15 +19,23 @@ export class TableComponent implements OnInit {
   auto: Automovil = {} as Automovil
   page: number;
   pageSize: number;
-  closeResult = '';
+ 
+  displayProgressBar: boolean;
   
   constructor(private modalService: NgbModal, private autoService: AutosService) { }
 
   ngOnInit() {
-    this.page = 1;
+    this.displayProgressBar = true;
+ 
     this.pageSize = 10;
+    this.page = +sessionStorage.getItem('currentPage');
+    
     this.autoService.getAutos().subscribe((response)=>{
+      setTimeout(() =>{
+      this.displayProgressBar = false;
       this.autos = response.data;
+      }, 1500)
+      
 
     })
   }
@@ -43,7 +51,10 @@ export class TableComponent implements OnInit {
 
     modalRef.result.then(
       (auto)=>{
-        this.autoService.updateAutos(auto).subscribe(response=>console.log(response));
+        this.autoService.updateAutos(auto).subscribe(value=> {
+          sessionStorage.setItem('currentPage',this.page.toString());
+          this.ngOnInit();
+        });
       },
       (reason)=>{
         console.log(reason)
@@ -58,7 +69,10 @@ export class TableComponent implements OnInit {
     modalRef.componentInstance.accion = 'Agregar';
     modalRef.result.then(
       (auto)=>{
-        this.autoService.addAuto(auto).subscribe(response => console.log(response));
+        this.autoService.addAuto(auto).subscribe(response => {
+          sessionStorage.setItem('currentPage',this.page.toString());
+          this.ngOnInit();
+        });
       },
       (reason)=>{
         console.log(reason)
@@ -74,8 +88,8 @@ export class TableComponent implements OnInit {
     modalRef.result.then(
       (autoTemp)=>{
         this.autoService.deleteAuto(autoTemp).subscribe(response=> {
-          console.log("Respuesta cuando se termina de eliminar el auto")
-          console.log(response)
+          sessionStorage.setItem('currentPage',this.page.toString());
+          this.ngOnInit();
           
         })
       },

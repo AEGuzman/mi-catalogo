@@ -4,3 +4,11 @@ body,
 html {
     margin: 0em;
 }
+
+.ng-valid[required] {
+    border-left: 5px solid green;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid red;
+}

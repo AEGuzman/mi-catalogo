@@ -6,15 +6,26 @@
 </div>
 <div class="modal-body">
 
-    <form #formautos="ngForm">
+    <form #formautos="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="marca">Marca</label>
-            <input type="text" class="form-control" id="marca" placeholder="Agrega la marca" [(ngModel)]="auto.marca" name="marca">
+            <input type="text" class="form-control" id="marca" placeholder="Agrega la marca" [(ngModel)]="auto.marca" required minlength="4" name="marca" #marca="ngModel">
+        </div>
+
+
+        <div *ngIf="marca.invalid && (marca.dirty || marca.touched)">
+            <div *ngIf="marca.errors.minlength" class="alert alert-danger">La marca debe tener minimo 4 letras</div>
+            <div *ngIf="marca.errors.required" class="alert alert-danger">La marca es requerida</div>
         </div>
 
         <div class="form-group">
             <label for="submarca">Submarca</label>
-            <input type="text" class="form-control" id="submarca" placeholder="Agrega la submarca" [(ngModel)]="auto.submarca" name="submarca">
+            <input type="text" class="form-control" id="submarca" placeholder="Agrega la submarca" [(ngModel)]="auto.submarca" required minlength="4" name="submarca" #submarca="ngModel">
+        </div>
+
+        <div *ngIf="submarca.invalid && (submarca.dirty || submarca.touched)">
+            <div *ngIf="submarca.errors.minlength" class="alert alert-danger">La submarca debe tener minimo 4 letras</div>
+            <div *ngIf="submarca.errors.required" class="alert alert-danger">La submarca es requerida</div>
         </div>
 
         <div class="form-group">
@@ -22,12 +33,27 @@
             <input type="text" class="form-control" id="descripcion" placeholder="Agrega la descripcion" [(ngModel)]="auto.descripcion" name="descripcion">
         </div>
 
+
         <div class="form-group">
-            <label for="modelos">Modelos</label>
-            <input type="text" class="form-control" id="modelo" placeholder="Agregar el modelo" [(ngModel)]="auto.modelos" name="modelos">
+            <label for="formControlRange" id="Modelos">Modelos</label>
+            <div style="justify-content: space-between;"></div>
+            <label>Desde</label>
+            <div style="display: flex;">
+                <input type="range" class="form-control-range" min="2000" max="2020" step="1" [(ngModel)]="rango[0]" name="modelo-minimo">
+                <div>{{rango[0]}}</div>
+            </div>
+            <label>Hasta</label>
+            <div style="display: flex;">
+                <input type="range" class="form-control-range" min="2000" max="2020" step="1" [(ngModel)]="rango[1]" name="modelo-maximo">
+                <div>{{rango[1]}}</div>
+            </div>
+
+            <div *ngIf="rango[0] > rango[1]" class="alert alert-danger">Desde no puede ser mayor que Hasta</div>
         </div>
+
+
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(auto)">Guardar</button>
+            <button type="submit" class="btn btn-outline-dark" [disabled]="!formautos.form.valid">Guardar</button>
         </div>
 
     </form>
