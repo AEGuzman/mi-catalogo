@@ -12,6 +12,7 @@
     float: left;
     margin-left: 4em;
     color: black;
+    cursor: pointer;
 }
 
 #descripcion {

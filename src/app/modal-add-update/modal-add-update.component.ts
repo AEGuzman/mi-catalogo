@@ -14,7 +14,7 @@ export class ModalAddUpdateComponent  {
   
   auto: Automovil = {} as Automovil;
   rango = [2000,2020];
-  newModelos = [];
+  
 
   constructor(public activeModal: NgbActiveModal) { }
   

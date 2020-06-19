@@ -19,6 +19,7 @@ export class TableComponent implements OnInit {
   auto: Automovil = {} as Automovil
   page: number;
   pageSize: number;
+  searchText;
  
   displayProgressBar: boolean;
   
@@ -90,7 +91,8 @@ export class TableComponent implements OnInit {
         this.autoService.deleteAuto(autoTemp).subscribe(response=> {
           sessionStorage.setItem('currentPage',this.page.toString());
           this.ngOnInit();
-          
+          console.log("Respuesta cuando se termina de eliminar un auto")
+          console.log(response)
         })
       },
       (reason)=>{
